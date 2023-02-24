@@ -1,15 +1,15 @@
 import Head from "next/head";
 
 import Layout from "../components/layout/layout";
-import { NotificationContextProvider } from "../store/notification-context";
+import { AuthContextProvider } from "../store/auto-context";
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, props }) {
   return (
-    <NotificationContextProvider>
-      <Layout>
+    <AuthContextProvider>
+      <Layout {...props}>
         <Head>
-          <title>Next Events</title>
+          <title>Wisebirds</title>
           <meta name="description" content="NextJS Events" />
           <meta
             name="viewport"
@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
         </Head>
         <Component {...pageProps} />
       </Layout>
-    </NotificationContextProvider>
+    </AuthContextProvider>
   );
 }
 

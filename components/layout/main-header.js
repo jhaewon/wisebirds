@@ -1,17 +1,45 @@
 import Link from 'next/link';
+import { useContext } from "react";
+import classes from "./main-header.module.css";
+import Dropdown from "react-dropdown";
+import AuthContext from "../../store/auto-context";
 
-import classes from './main-header.module.css';
+function MainHeader(props) {
+  const authCtx = useContext(AuthContext);
+  const options = ["어드민", "매니저", "뷰어"];
 
-function MainHeader() {
+  function onSetAuth(event) {
+    if (event.value === "뷰어" || (!authCtx.toggle && event.value !== "뷰어")) {
+      authCtx.toggleMenu(!authCtx.toggle);
+    }
+  }
+
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
-        <Link href='/'>NextEvents</Link>
+        <Link href="/">Wisebirds</Link>
       </div>
       <nav className={classes.navigation}>
         <ul>
           <li>
-            <Link href='/events'>Browse All Events</Link>
+            <Link href="/campaign">캠페인</Link>
+          </li>
+          {authCtx.toggle && (
+            <li>
+              <Link href="/user">사용자</Link>
+            </li>
+          )}
+        </ul>
+        <ul className={classes.auth}>
+          <li>
+            <a>{props.auth.name}</a>
+          </li>
+          <li>
+            <Dropdown
+              options={options}
+              value={options[0]}
+              onChange={onSetAuth}
+            />
           </li>
         </ul>
       </nav>

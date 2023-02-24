@@ -1,23 +1,14 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
+import { getAuth } from "../../helpers/api-util";
 
 import MainHeader from "./main-header";
-import Notification from "../ui/notification";
-import notificationContext from "../../store/notification-context";
+
 function Layout(props) {
-  const notificationCtx = useContext(notificationContext);
-  const activeNotification = notificationContext.Notification;
+  const auth = getAuth();
 
   return (
     <Fragment>
-      <MainHeader />
-      <main>{props.children}</main>
-      {activeNotification && (
-        <Notification
-          title={activeNotification.title}
-          message={activeNotification.message}
-          status={activeNotification.status}
-        />
-      )}
+      <MainHeader auth={auth} />
     </Fragment>
   );
 }
