@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import classes from "./main-header.module.css";
 import Dropdown from "react-dropdown";
 import AuthContext from "../../store/auto-context";
@@ -32,7 +32,9 @@ function MainHeader(props) {
         </ul>
         <ul className={classes.auth}>
           <li>
-            <a>{props.auth.name}</a>
+            <a onClick={() => props.handlePopup(!props.isPopupOpen)}>
+              {props.auth.name}
+            </a>
           </li>
           <li>
             <Dropdown

@@ -31,3 +31,43 @@ ul {
   margin: auto;
   text-align: center;
 }
+
+.title {
+  position: relative;
+  left: 23%;
+  width: 150px;
+}
+
+form {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+label,
+input {
+  display: block;
+  width: 100%;
+}
+
+label {
+  margin-bottom: 5px;
+  height: 22px;
+}
+
+.input {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #777;
+}
+
+.error {
+  border-color: red;
+}
+
+.inputFeedback {
+  color: rgb(235, 54, 54);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
