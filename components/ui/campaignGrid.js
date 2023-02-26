@@ -64,7 +64,7 @@ function CampaignGrid({ data, rowsPerPage, currentPage, onSwitch }) {
                   <input
                     type="checkbox"
                     checked={item.enabled}
-                    onChange={() => onSwitch(item.id)}
+                    onChange={(e) => onSwitch(item.id, item.enabled)}
                   />
                 ) : (
                   <input

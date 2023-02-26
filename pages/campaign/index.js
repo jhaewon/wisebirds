@@ -13,8 +13,8 @@ function Campaign(props) {
     setCurrentPage(newPage);
   }
 
-  function handleSwitchToggle(itemId) {
-    const newData = patchCampaign(itemId);
+  function handleSwitchToggle(itemId, value) {
+    const newData = patchCampaign(itemId, value);
     setData(newData);
   }
 

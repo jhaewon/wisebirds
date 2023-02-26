@@ -2,11 +2,7 @@ import Head from 'next/head';
 
 
 function HomePage(props) {
-  return (
-    <div>
-      <h1>home page</h1>
-    </div>
-  );
+  return <div></div>;
 }
 
 export default HomePage;

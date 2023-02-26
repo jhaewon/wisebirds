@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import classes from "./modal.module.css";
 import UserRegister from "./userRegister";
+import UserEdit from "./userEdit";
 
 function Modal(props) {
   return (
@@ -19,7 +20,11 @@ function Modal(props) {
         </svg>
       </button>
       <div className={classes.modalBody}>
-        <UserRegister />
+        {props.type === "register" ? (
+          <UserRegister closeModal={props.closeModal} />
+        ) : (
+          <UserEdit closeModal={props.closeModal} editId={props.editId} />
+        )}
       </div>
     </div>
   );

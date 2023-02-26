@@ -2,13 +2,14 @@ import { React, useContext } from "react";
 import ModalContext from "../../store/modal-context";
 import classes from "./campaignGrid.module.css";
 
-function UserGrid({ data, rowsPerPage, currentPage, onSwitch, onEdit }) {
+function UserGrid({ data, rowsPerPage, currentPage, onEdit }) {
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
 
   const currentData = data.slice(startIndex, endIndex);
 
   function formatTimestamp(text) {
+    if (text === "") return "";
     var today = new Date(text);
     today.setHours(today.getHours() + 9);
     return today.toISOString().replace("T", " ").substring(0, 19);
@@ -34,7 +35,7 @@ function UserGrid({ data, rowsPerPage, currentPage, onSwitch, onEdit }) {
             </td>
             <td className={classes.center}>
               <label>
-                <button onClick={() => onEdit()}>수정</button>
+                <button onClick={() => onEdit("edit", item.email)}>수정</button>
               </label>
             </td>
           </tr>

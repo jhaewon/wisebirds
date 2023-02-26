@@ -4,12 +4,12 @@ import Pagination from "../../components/ui/pagination";
 import { getUsers } from "../../helpers/api-util";
 import ModalContext from "../../store/modal-context";
 import Modal from "../../components/ui/modal";
-import UserRegister from "../../components/ui/userRegister";
 
 function User(props) {
   const modalCtx = useContext(ModalContext);
 
   const [modalType, setModalType] = useState(null);
+  const [editId, setEditId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState(props.list.content);
   const rowsPerPage = 25;
@@ -19,29 +19,23 @@ function User(props) {
     setCurrentPage(newPage);
   }
 
-  function handleSwitchToggle(itemId) {
-    const newData = data.map((item) => {
-      if (item.id === itemId) {
-        return { ...item, enabled: !item.enabled };
-      }
-      return item;
-    });
-    setData(newData);
-  }
-
-  function handleOpenModal(type) {
+  function handleOpenModal(type, id) {
     setModalType(type);
+    setEditId(id);
     modalCtx.modalOpen();
   }
 
-  function handleCloseModal() {
+  function handleCloseModal(list) {
     modalCtx.modalClose();
+    if (list.content !== undefined) {
+      setData(list.content);
+    }
   }
 
   return (
     <Fragment>
       <h2 className="title">
-        사용자 관리{" "}
+        사용자 관리
         <button
           onClick={() => {
             handleOpenModal("register");
@@ -55,7 +49,6 @@ function User(props) {
           data={data}
           rowsPerPage={rowsPerPage}
           currentPage={currentPage}
-          onSwitch={handleSwitchToggle}
           onEdit={handleOpenModal}
         />
         <Pagination
@@ -63,7 +56,13 @@ function User(props) {
           currentPage={currentPage}
           onPageChange={handlePageChange}
         />
-        {modalCtx.isOpen ? <Modal closeModal={handleCloseModal} /> : null}
+        {modalCtx.isOpen ? (
+          <Modal
+            closeModal={handleCloseModal}
+            type={modalType}
+            editId={editId}
+          />
+        ) : null}
       </div>
     </Fragment>
   );
