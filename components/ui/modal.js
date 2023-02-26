@@ -1,7 +1,7 @@
-import { Fragment } from "react";
 import classes from "./modal.module.css";
 import UserRegister from "./userRegister";
 import UserEdit from "./userEdit";
+import ErrorAlert from "./errorAlert";
 
 function Modal(props) {
   return (
@@ -22,8 +22,10 @@ function Modal(props) {
       <div className={classes.modalBody}>
         {props.type === "register" ? (
           <UserRegister closeModal={props.closeModal} />
-        ) : (
+        ) : props.type === "edit" ? (
           <UserEdit closeModal={props.closeModal} editId={props.editId} />
+        ) : (
+          <ErrorAlert />
         )}
       </div>
     </div>

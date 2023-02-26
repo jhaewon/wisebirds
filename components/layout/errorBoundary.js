@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ErrorAlert from "../ui/errorAlert";
+import Modal from "../../components/ui/modal";
 
 class ErrorBoundary extends Component {
   state = {
@@ -14,11 +14,17 @@ class ErrorBoundary extends Component {
     });
   };
 
+  modalClose = () => {
+    this.setState({
+      hasError: false,
+    });
+  };
+
   render() {
     if (this.state.hasError) {
       return (
         <div>
-          <ErrorAlert />
+          <Modal type="error" closeModal={this.modalClose} />
         </div>
       );
     }
