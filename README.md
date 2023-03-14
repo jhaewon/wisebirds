@@ -1,5 +1,5 @@
 
-## Wisebirds 사전과제입니다.
+## React, Next
 
 1.
 
